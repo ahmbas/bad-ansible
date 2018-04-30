@@ -20,7 +20,7 @@
 
 - name: copy static index.html to tomcat webapps/ansible/index.html
   template:
-    src: "index.html.{ansible_hostname}"
+    src: "index.html.{{ansible_hostname}}"
     dest: /usr/share/tomcat/webapps/ansible/index.html
     mode: 0644
   notify: reload tomcat
