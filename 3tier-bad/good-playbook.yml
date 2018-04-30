@@ -34,7 +34,6 @@
 
 - name: Setup apps
   hosts: apps
-  gather_facts: false
   become: true
   roles:
     - role: apps
