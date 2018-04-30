@@ -7,6 +7,4 @@
     - enable postgres
 
 - name: Init postgres
-  shell: "postgresql-setup initdb >> postgresql-init.done"
-  args:
-    creates: "postgresql-init.done"
+  command: postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf
