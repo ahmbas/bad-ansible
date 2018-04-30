@@ -1,0 +1,16 @@
+---
+# tasks file for frontends
+- name: Install HAProxy
+  yum:
+    name={{item}} state=latest
+  with_items:
+    - haproxy
+    - httpie
+- name: Enable and start HAProxy
+  service: name=haproxy enabled=True state=started
+
+- name: Add HAProxy configuration file
+  template:
+    src: ./haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify: reload haproxy

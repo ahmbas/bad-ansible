@@ -1,0 +1,4 @@
+---
+# handlers file for appdbs
+- name: start and enable postgres
+  service: name=postgresql state=started enable=True
