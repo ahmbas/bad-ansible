@@ -25,19 +25,19 @@
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
 
-  - name: Setup frontends
-    hosts: frontends
-    gather_facts: false # remove later! speeds up testing
-    become: true
-    roles:
-      - role: frontends
+- name: Setup frontends
+  hosts: frontends
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  roles:
+    - role: frontends
 
-  - name: Setup apps
-    hosts: apps
-    gather_facts: false
-    become: true
-    roles:
-      - role: apps
+- name: Setup apps
+  hosts: apps
+  gather_facts: false
+  become: true
+  roles:
+    - role: apps
 
 - name: Setup postgres
   gather_facts: false
