@@ -1,6 +1,3 @@
-- name: reload tomcat
-  service: name=tomcat state=reloaded
-
 - name: enable apache
   service:
     name: httpd
