@@ -7,5 +7,5 @@
     - enable postgres
 
 - name: Init postgres
-  shell: "postgresql-setup initdb"
+  shell: "postgresql-setup initdb >> postgresql-init.done"
   creates: "postgresql-init.done"
