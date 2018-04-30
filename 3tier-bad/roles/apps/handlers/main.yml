@@ -1,7 +1,5 @@
----
-# handlers file for apps
 - name: reload tomcat
-  service: tomcat state=reloaded
+  service: name=tomcat state=reloaded
 
 - name: enable apache
   service:
