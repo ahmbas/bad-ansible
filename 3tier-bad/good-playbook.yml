@@ -25,89 +25,23 @@
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
 
-- name: Setup Frontend Servers
-  hosts: frontends
-  gather_facts: false # remove later! speeds up testing
-  become: true
-  roles:
-    - role: frontends
+  - name: Setup frontends
+    hosts: frontends
+    gather_facts: false # remove later! speeds up testing
+    become: true
+    roles:
+      - role: frontends
 
-- name: deploy tomcat
-  hosts: apps
-  gather_facts: false
-  become: true
+  - name: Setup apps
+    hosts: apps
+    gather_facts: false
+    become: true
+    roles:
+      - role: apps
 
-  tasks:
-  - name: install tomcat
-    package:
-      name: tomcat
-      state: latest
-  - name: enable tomcat at boot
-    service:
-      name: tomcat
-      enabled: yes
-
-  - name: create ansible tomcat directory
-    file:
-      path: /usr/share/tomcat/webapps/ROOT
-      state: directory
-
-  - name: copy static index.html to tomcat webapps/ansible/index.html
-    template:
-      src: index.html.j2
-      dest: /usr/share/tomcat/webapps/ROOT/index.html
-      mode: 0644
-
-  - name: start tomcat
-    service:
-      name: tomcat
-      state: started
-
-- name: index.html on app 1
-  hosts: app1
-  gather_facts: false
-  become: true
-
-  tasks:
-  - name: copy static index.html to tomcat webapps/ansible/index.html
-    template:
-      src: index.html.app1
-      dest: /usr/share/tomcat/webapps/ansible/index.html
-
-- name: index.html on app 1
-  hosts: app2
-  gather_facts: false
-  become: true
-
-  tasks:
-  - name: copy static index.html to tomcat webapps/ansible/index.html
-    template:
-      src: index.html.app2
-      dest: /usr/share/tomcat/webapps/ansible/index.html
-
-- name: deploy postgres
+- name: Setup postgres
   gather_facts: false
   become: true
   hosts: appdbs
   roles:
     - role: appdbs
-
-
-- name: deploy apache
-  hosts: apps
-  gather_facts: false
-  become: true
-  hosts: apps
-  tasks:
-  - name: install apache
-    yum:
-      name: httpd
-      state: latest
-  - name: enable apache at boot
-    service:
-      name: httpd
-      enabled: yes
-  - name: start apache
-    service:
-      name: httpd
-      state: started

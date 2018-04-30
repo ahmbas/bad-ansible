@@ -1,4 +1,7 @@
 ---
 # handlers file for appdbs
-- name: start and enable postgres
-  service: name=postgresql state=started enable=True
+- name: start postgres
+  service: name=postgresql state=started
+
+- name: enable postgres
+  service: name=postgresql enabled=True

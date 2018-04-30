@@ -1,8 +1,10 @@
 ---
 # tasks file for appdbs
-- name: install progress
+- name: install progres
   yum: name=postgresql-server state=latest
-  notify: start and enable postgres
+  notify:
+    - start postgres
+    - enable postgres
 
 - name: Init postgres
   command: "postgresql-setup initdb"
