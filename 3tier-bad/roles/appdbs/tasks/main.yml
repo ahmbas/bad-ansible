@@ -8,4 +8,4 @@
 
 - name: Init postgres
   shell: "postgresql-setup initdb"
-  creates: "/tmp/postgresql-init.done"
+  creates: "postgresql-init.done"
