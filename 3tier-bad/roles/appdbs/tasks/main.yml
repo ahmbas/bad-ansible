@@ -9,5 +9,3 @@
 - name: Init postgres
   command: "postgresql-setup initdb"
   run_once: True
-  #with_items:
-    #- "chkconfig postgresql on"

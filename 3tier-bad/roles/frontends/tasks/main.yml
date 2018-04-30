@@ -6,6 +6,7 @@
   with_items:
     - haproxy
     - httpie
+
 - name: Enable and start HAProxy
   service: name=haproxy enabled=True state=started
 

@@ -29,6 +29,8 @@
   hosts: frontends
   gather_facts: false # remove later! speeds up testing
   become: true
+  vars:
+    GUID:  "{{ lookup('env','GUID') }}"
   roles:
     - role: frontends
 
