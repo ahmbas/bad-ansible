@@ -1,0 +1,14 @@
+---
+# handlers file for apps
+- name: reload tomcat
+  service: tomcat state=reloaded
+
+- name: enable apache
+  service:
+    name: httpd
+    enabled: yes
+
+- name: start apache
+  service:
+    name: httpd
+    state: started
