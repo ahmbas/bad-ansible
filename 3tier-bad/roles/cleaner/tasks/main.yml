@@ -24,6 +24,10 @@
     - tomcat
     - postgresql-server
 
+
+- name: Remove postgres directory
+  command: "rm -rf /var/lib/pgsql/"
+
 #- name: Copy placeholder index.html
 # template:
 #    src: /dev/null
