@@ -7,5 +7,5 @@
     - enable postgres
 
 - name: Init postgres
-  command: "postgresql-setup initdb"
-  run_once: True
+  shell: "postgresql-setup initdb"
+  creates: "/tmp/postgresql-init.done"
