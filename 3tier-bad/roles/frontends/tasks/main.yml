@@ -3,7 +3,7 @@
 - name: "install frontend packages: {{ haproxy_packages }}"
   yum:
     name={{item}} state=latest
-  with_items: "{{ haproxy_packages }}''"
+  with_items: "{{ haproxy_packages }}"
 
 - name: enable and start haproxy
   service: name=haproxy enabled=True state=started
