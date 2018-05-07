@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 global
   log /dev/log  local0
   log /dev/log  local1 notice
@@ -26,6 +26,6 @@ backend app-servers
     mode http
     balance roundrobin
     option forwardfor
-    {% for n in range(1,(apps_count | int )) %}
+    {% for n in range(1,(apps_count | int ) + 1) %}
     server app{{n}} app{{n}}.{{GUID}}.internal:8080 cookie app{{n}} check
     {% endfor %}

@@ -8,7 +8,7 @@
 - name: enable and start haproxy
   service: name=haproxy enabled=True state=started
 
-- name: Add HAProxy configuration file
+- name: add haproxy configuration file
   template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
