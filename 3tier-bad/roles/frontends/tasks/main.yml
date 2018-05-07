@@ -1,13 +1,11 @@
 ---
 # tasks file for frontends
-- name: Install HAProxy
+- name: "install frontend packages: {{ haproxy_packages }}"
   yum:
     name={{item}} state=latest
-  with_items:
-    - haproxy
-    - httpie
+  with_items: "{{ haproxy_packages }}''"
 
-- name: Enable and start HAProxy
+- name: enable and start haproxy
   service: name=haproxy enabled=True state=started
 
 - name: Add HAProxy configuration file

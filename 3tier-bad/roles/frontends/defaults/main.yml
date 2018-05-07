@@ -1,2 +1,4 @@
----
-# defaults file for frontends
+haproxy_packages:
+  - haproxy
+  - httpie
+apps_count: "{{ groups['apps'] | length }}"
