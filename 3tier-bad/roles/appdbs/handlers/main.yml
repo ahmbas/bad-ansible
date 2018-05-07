@@ -1,5 +1,8 @@
 ---
 # handlers file for appdbs
+- name: init postgres
+  command: postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf
+
 - name: start postgres
   service: name=postgresql state=started
 
@@ -10,6 +13,3 @@
   wait_for:
     port: 5432
     delay: 2
-
-- name: init postgres
-  command: postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf
