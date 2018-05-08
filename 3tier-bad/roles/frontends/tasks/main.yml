@@ -2,17 +2,15 @@
 # tasks file for frontends
 - name: "install frontend packages: {{ haproxy_packages }}"
   yum:
-    name={{item}} state=latest
+    name: "{{item}}"
+    state: latest
   with_items: "{{ haproxy_packages }}"
 
 - name: enable and start haproxy
-  service: name=haproxy enabled=True state=started
-
-- name: add haproxy configuration file
-  template:
-    src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-  notify: reload haproxy
+  service:
+    name: haproxy
+    enabled: True
+    state: started
 
 - name: add haproxy configuration file
   block:
@@ -23,6 +21,8 @@
   rescue:
     - debug:
         msg: could not update haproxy
+        verbosity: 2
   always:
     - debug:
         msg: sending notification, attempted update to haproxy cfg
+        verbosity: 2
