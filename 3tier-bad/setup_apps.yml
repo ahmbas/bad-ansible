@@ -1,0 +1,7 @@
+- name: setup apps
+  hosts: apps
+  become: true
+  roles:
+    - role: apps
+  tags:
+    - setup apps

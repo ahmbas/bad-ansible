@@ -1,0 +1,8 @@
+- name: setup postgres
+  gather_facts: false
+  become: true
+  hosts: appdbs
+  roles:
+    - role: appdbs
+  tags:
+    - setup postgres

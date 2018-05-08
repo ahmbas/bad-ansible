@@ -11,23 +11,10 @@
       mode: 0644
 
 - name: setup frontends
-  hosts: frontends
-  gather_facts: false # remove later! speeds up testing
-  become: true
-  vars:
-    GUID:  "{{ lookup('env','GUID') }}"
-  roles:
-    - role: frontends
+  import_tasks: setup_frontends.yml
 
 - name: setup apps
-  hosts: apps
-  become: true
-  roles:
-    - role: apps
+  import_tasks: setup_apps.yml
 
 - name: setup postgres
-  gather_facts: false
-  become: true
-  hosts: appdbs
-  roles:
-    - role: appdbs
+  import_tasks: setup_postgres.yml
