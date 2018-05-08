@@ -11,10 +11,10 @@
       mode: 0644
 
 - name: setup frontends
-  import_tasks: setup_frontends.yml
+  import_playbook: setup_frontends.yml
 
 - name: setup apps
-  import_tasks: setup_apps.yml
+  import_playbook: setup_apps.yml
 
 - name: setup postgres
-  import_tasks: setup_postgres.yml
+  import_playbook: setup_postgres.yml
