@@ -13,3 +13,16 @@
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
   notify: reload haproxy
+
+- name: add haproxy configuration file
+  block:
+   - template:
+       src: haproxy.cfg.j2
+       dest: /etc/haproxy/haproxy.cfg
+     notify: reload haproxy
+  rescue:
+    - debug:
+        msg: could not update haproxy
+  always:
+    - debug:
+        msg: sending notification, attempted update to haproxy cfg

@@ -3,15 +3,13 @@
     name: tomcat
     state: latest
 
-- name: create root tomcat directory
+- name: create tomcat directories
   file:
-    path: /usr/share/tomcat/webapps/ROOT
+    path: "/usr/share/tomcat/webapps/{{item}}"
     state: directory
-
-- name: create tomcat ansible directory
-  file:
-    path: /usr/share/tomcat/webapps/ansible
-    state: directory
+  with_items:
+    - ROOT
+    - ansible
 
 - name: start tomcat
   service: name=tomcat state=started enabled=True
